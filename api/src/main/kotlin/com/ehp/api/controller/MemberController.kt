@@ -1,7 +1,9 @@
 package com.ehp.api.controller
 
+import com.ehp.api.config.logger
 import com.ehp.api.domain.Member
 import com.ehp.api.service.MemberService
+import com.ehp.mapper.config.ObjectMapperConverter
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.*
 class MemberController(
     val memberService: MemberService
 ) {
-
+    val logger = logger<MemberController>()
     @GetMapping("/{id}")
     fun get(@PathVariable id:Long): Member {
-        return memberService.getMember(id)
+        val member = memberService.getMember(id)
+        logger.info(ObjectMapperConverter.writeValueAsString(member))
+        return member
     }
 
     @GetMapping()
