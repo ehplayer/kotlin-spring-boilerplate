@@ -1,19 +1,8 @@
-plugins {
-    id("java")
-}
+import org.gradle.api.tasks.bundling.Jar
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
-group = "com.ehp"
-version = "1.0-SNAPSHOT"
+val jar: Jar by tasks
+val bootJar: BootJar by tasks
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
+bootJar.enabled = false
+jar.enabled = true
