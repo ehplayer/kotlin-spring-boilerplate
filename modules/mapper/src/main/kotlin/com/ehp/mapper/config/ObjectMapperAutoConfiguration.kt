@@ -11,6 +11,7 @@ class ObjectMapperAutoConfiguration(
 
     @Throws(Exception::class)
     override fun afterPropertiesSet() {
+
         ObjectMapperConverter.initObjectMapper(objectMapper)
     }
 }
